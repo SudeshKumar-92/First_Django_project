@@ -14,7 +14,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                dir('first_django_project') { // <-- this must be the project root dir
+                dir('First_Django_project') { // <-- this must be the project root dir
                     sh '''
                     source ../venv/bin/activate
                     python manage.py test
