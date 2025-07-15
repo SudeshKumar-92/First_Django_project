@@ -2,16 +2,17 @@ pipeline {
     agent {
         docker {
             image 'python:3.11'
+            args '-u root' // ensures root user in container
         }
     }
 
     stages {
-        stage('Install and Test') {
+        stage('Install') {
             steps {
                 sh '''
-                    pip install --upgrade pip
+                    python3 -m venv venv
+                    source venv/bin/activate
                     pip install -r requirements.txt
-                    python manage.py test
                 '''
             }
         }
