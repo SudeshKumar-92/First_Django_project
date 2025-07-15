@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'python:3.11'
-            args '-u root' // ensures root user in container
+            args '-u root'  // use root to avoid permission issues
         }
     }
 
@@ -11,8 +11,17 @@ pipeline {
             steps {
                 sh '''
                     python3 -m venv venv
-                    source venv/bin/activate
+                    . venv/bin/activate
+                    pip install --upgrade pip
                     pip install -r requirements.txt
+                '''
+            }
+        }
+        stage('Test') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    python manage.py test
                 '''
             }
         }
