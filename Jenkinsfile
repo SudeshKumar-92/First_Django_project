@@ -5,19 +5,18 @@ pipeline {
         stage('Install') {
             steps {
                 sh '''
-                    if [ ! -d "venv" ]; then
-                    python3.10 -m venv venv
-                    fi
+                python3.10 -m venv venv || (echo "Failed to create venv"; exit 1)
+                 . venv/bin/activate
+                pip install -r requirements.txt
                 '''
-                }
-                        }
+            }
+        }
 
         stage('Test') {
             steps {
                 dir('Django_project') { // <-- this must be the project root dir
                     sh '''
-                    bash -c "source venv/bin/activate &&
-                    python manage.py test "
+                    bash -c "source venv/bin/activate && python manage.py test"
                     '''
                 }
             }
