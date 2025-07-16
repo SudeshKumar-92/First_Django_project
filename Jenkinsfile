@@ -5,12 +5,12 @@ pipeline {
         stage('Install') {
             steps {
                 sh '''
-                python3.10 -m venv venv || (echo "Failed to create venv"; exit 1)
-                 . venv/bin/activate
-                pip install -r requirements.txt
+                    if [ ! -d "venv" ]; then
+                    python3.10 -m venv venv
+                    fi
                 '''
-            }
-        }
+                }
+                        }
 
         stage('Test') {
             steps {
