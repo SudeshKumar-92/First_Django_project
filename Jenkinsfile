@@ -16,8 +16,8 @@ pipeline {
             steps {
                 dir('Django_project') { // <-- this must be the project root dir
                     sh '''
-                    bash -c "source venv/bin/activate &&
-                    python manage.py test"
+                    source venv/bin/activate
+                    python manage.py test
                     '''
                 }
             }
