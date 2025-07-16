@@ -13,8 +13,8 @@ pipeline {
         }
 
         stage('Test') {
-            steps {
-                {
+            steps { dir('Django_Project/Django_project')
+                 { 
                     sh '''
                         . /tmp/myvenv/bin/activate
                         python manage.py test
