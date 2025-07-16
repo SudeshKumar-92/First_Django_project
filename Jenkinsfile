@@ -5,11 +5,10 @@ pipeline {
         stage('Install') {
     steps {
             sh '''
-                python3.10 -m venv venv
-                . venv/bin/activate
-                pip install --upgrade pip
+                python3.10 -m venv /tmp/myvenv
+                . /tmp/myvenv/bin/activate
                 pip install -r requirements.txt
-                '''
+            '''
             }
         }
 
