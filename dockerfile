@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt /app/
 COPY Django_project /app/
 
-RUN apt-get update && apt-get install -y python3 python3-pip python3-venv
+RUN sudo apt-get update && sudo apt-get install -y python3 python3-pip python3-venv
 
 SHELL ["/bin/bash", "-c"]
 
